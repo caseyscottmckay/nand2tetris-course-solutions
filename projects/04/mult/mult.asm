@@ -7,3 +7,24 @@
 // (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
 
 // Put your code here.
+@R2 //sets A register to R2 and Ram[R2] becomes selected memory
+M=0 //Memory[R2] = 0
+(LOOP)
+    @R1
+    D=M
+    @END
+    D;JEQ //if (R1==0) goto END
+
+    @R0
+    D=M //D=R0
+    @R2
+    M=M+D //R2 = R2+R0
+
+    @R1
+    M=M-1 //R1--
+
+    @LOOP
+    0;JMP //goto LOOP
+(END)
+    @END
+    0;JMP
