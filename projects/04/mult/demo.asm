@@ -1,26 +1,49 @@
+
+// Computes RAM[1] = 1 + 2 + ... + RAM[0]
+// n = R0
+// i = 1
+// sum = 0
+//LOOP
+//  if i > n goto STOP
+//  sum = sum + 1
+//  i = i + 1
+//  goto LOOP
+//STOP
+//  R1 = sum
+
+@R0
+D=M
+@n
+M=D
+@i
+M=1
+@sum
+M=0
 (LOOP)
-    //if (i==n) goto END
-    @i
-    D=M
-    @n
-    D=D-M
-    @END
-    D;JEQ
+  @i
+  D=M
+  @n
+  D=D-M
+  @STOP
+  D;JGT //if i > n goto STOP
 
-    //RAM[arr+1] = -1
-    @arr
-    D=M
-    @i
-    A=D+M
-    M=-1
+  @sum
+  D=M
+  @i
+  D=D+M
+  @sum
+  M=D //sum = sum + i
+  @i
+  M=M+1
+  @LOOP
+  0;JMP
 
-    //i++
-    @i
-    M=M+1
-
-    @LOOP
-    0;JMP
+(STOP)
+  @SUM
+  D=M
+  @R1
+  M=D //RAM[1] = sum
 
 (END)
-    @END
-    0;JMP
+  @END
+  0;JMP
