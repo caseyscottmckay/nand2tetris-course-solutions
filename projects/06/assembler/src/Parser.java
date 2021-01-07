@@ -8,9 +8,8 @@ public class Parser {
     String assemblerString;
     CommandType commandType;
 
-    //open file stream and get ready to parse
     public Parser() throws IOException {
-        try (Stream<String> stream = Files.lines(Paths.get("/home/casey/nand2tetris/projects/06/max/MaxL.asm"))){
+        try (Stream<String> stream = Files.lines(Paths.get("/home/casey/nand2tetris-course-solutions/projects/06/max/MaxL.asm"))){
             stream.forEach(System.out::println);
 
         }
